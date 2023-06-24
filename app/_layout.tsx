@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import { Slot } from "expo-router";
 import {
   useFonts,
@@ -7,6 +8,7 @@ import {
   Jost_700Bold,
 } from "@expo-google-fonts/jost";
 import { NativeWindStyleSheet } from "nativewind";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
 import { SplashContainer } from "../src/components/layouts/SplashContainer";
 
@@ -22,7 +24,11 @@ export default function RootLayout() {
     Jost_700Bold,
   });
 
-  if (true) return <SplashContainer />;
+  if (!fontsLoaded) return <SplashContainer />;
 
-  return <Slot />;
+  return (
+    <BottomSheetModalProvider>
+      <Slot />
+    </BottomSheetModalProvider>
+  );
 }
